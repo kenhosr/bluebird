@@ -53,7 +53,7 @@ Promise.prototype._cancelBy = function(canceller) {
         this._branchesRemainingToCancel = 0;
         this._invokeOnCancel();
         return true;
-    } else {
+    } else if (this._branchHasCancelled()) {
         ASSERT(canceller._cancellationParent === this);
         this._branchHasCancelled();
         if (this._enoughBranchesHaveCancelled()) {
